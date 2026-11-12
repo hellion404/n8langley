@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nate Langley | ePortfolio</title>
+<meta name="description" content="The ePortfolio of Nate Langley: sculpture, painting and writing.">
+
+<!--
+  HOW TO EDIT THIS SITE
+  ---------------------
+  * Everything is in this one file. Images live in /images, PDFs in /docs.
+  * Anything still missing is marked with class="todo" and shows up on the
+    page as a yellow hazard label. Search this file for "todo" to find them all.
+  * To add the intro video, search for "VIDEO" below.
+-->
+
+<style>
+@font-face{
+  font-family:"Jacquard 24";
+  src:url("fonts/jacquard-24-latin-400-normal.woff2") format("woff2");
+  font-weight:400; font-style:normal; font-display:swap;
+}
+
+:root{
+  --black:#000000;
+  --bone:#EDE6D0;
+  --red:#D21F1B;
+  --ember:#FF6A00;
+  --flame:#FFC81F;
+  --steel:#8E99A8;
+  --blue:#2440B8;
+  --display:"Jacquard 24","Old English Text MT","UnifrakturCook",Georgia,serif;
+  --body:"Times New Roman",Times,Georgia,serif;
+  --chrome:Verdana,Geneva,Arial,sans-serif;
+}
+
+*{box-sizing:border-box}
+html{background:#000}
+body{
+  margin:0;
+  color:var(--bone);
+  font:18px/1.6 var(--body);
+  /* comic-book halftone dots, tiled like a 90s background */
+  background:#000 radial-gradient(circle,#4d0b0b 1.3px,transparent 1.8px) 0 0/10px 10px;
+}
+img{max-width:100%}
+
+a{color:var(--flame)}
+a:visited{color:#FF9A3C}
+a:hover{color:#fff;background:var(--red)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{
+  outline:3px dashed var(--flame); outline-offset:3px;
+}
+
+.skip{position:absolute;left:-999px;top:0;background:var(--flame);color:#000;padding:6px 10px;font:bold 14px var(--chrome)}
+.skip:focus{left:8px;top:8px;z-index:10}
+
+/* ---------- outer frame ---------- */
+.shell{
+  max-width:1040px;
+  margin:18px auto;
+  border:4px ridge var(--red);
+  background:#000;
+}
+
+/* ---------- banner ---------- */
+.banner{
+  position:relative;
+  height:212px;
+  overflow:hidden;
+  background:#000;
+  border-bottom:4px ridge var(--red);
+}
+.fire{
+  position:absolute; left:0; top:0;
+  width:100%; height:100%;
+  display:block;
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+}
+.flames-paused .fire{opacity:.8}
+.banner-text{
+  position:relative; z-index:1;
+  height:100%;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding:0 12px 10px;
+}
+.site-name{
+  margin:0;
+  font:400 96px/1 var(--display);
+  color:#fff;
+  text-shadow:
+    4px 4px 0 #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000,
+    0 4px 0 #000, 4px 0 0 #000, 0 -3px 0 #000, -3px 0 0 #000;
+}
+.tagline{
+  margin:8px 0 0;
+  padding:3px 12px;
+  font:bold 13px/1.4 var(--chrome);
+  color:var(--flame);
+  background:#000;
+  border:1px solid var(--flame);
+}
+
+/* ---------- ticker ---------- */
+.ticker{
+  overflow:hidden;
+  white-space:nowrap;
+  background:var(--blue);
+  color:#fff;
+  font:bold 14px/1 var(--chrome);
+  border-bottom:4px ridge var(--red);
+}
+.ticker-track{
+  display:inline-block;
+  padding:8px 0;
+  animation:ticker 38s linear infinite;
+}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-track span{padding:0 1.6em}
+.ticker-track b{color:var(--flame)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- two columns ---------- */
+.cols{display:grid;grid-template-columns:214px minmax(0,1fr)}
+.side{
+  padding:16px 14px;
+  border-right:4px ridge var(--red);
+  background:#0b0b0b;
+}
+.side-label{
+  margin:0 0 10px;
+  font:bold 12px var(--chrome);
+  color:var(--steel);
+}
+.navlist{list-style:none;margin:0 0 18px;padding:0}
+.navbtn{
+  display:block;
+  margin:0 0 8px;
+  padding:8px 10px;
+  font:bold 13px/1.25 var(--chrome);
+  color:var(--flame);
+  text-decoration:none;
+  background:#1c1c1c;
+  border:3px outset var(--steel);
+}
+.navbtn small{display:block;font-weight:normal;font-size:11px;color:var(--bone)}
+.navbtn:visited{color:var(--flame)}
+.navbtn:hover{background:#3a0808;color:#fff}
+.navbtn:active{border-style:inset}
+.navbtn[aria-current="page"]{border-style:inset;background:var(--red);color:#fff}
+.navbtn[aria-current="page"] small{color:#fff}
+
+.gizmo{
+  margin:0 0 14px;
+  padding:8px;
+  border:2px groove var(--steel);
+  font:11px/1.4 var(--chrome);
+  color:var(--bone);
+  text-align:center;
+}
+.counter{
+  display:inline-block;
+  margin-top:4px;
+  padding:2px 6px;
+  background:#000;
+  border:2px inset var(--steel);
+  font:bold 18px/1.2 "Courier New",Courier,monospace;
+  letter-spacing:3px;
+  color:#FF3B2F;
+}
+.flamebtn{
+  width:100%;
+  padding:7px 6px;
+  font:bold 12px var(--chrome);
+  color:#000;
+  background:var(--flame);
+  border:3px outset #FFE58A;
+  cursor:pointer;
+}
+.flamebtn:active{border-style:inset}
+.flamebtn[aria-pressed="false"]{border-style:inset;background:#8a6c10;color:#fff}
+
+/* ---------- main ---------- */
+.main{padding:22px 28px 30px;min-width:0}
+.js .page{display:none}
+.js .page.is-open{display:block}
+.page + .page{margin-top:60px}
+.js .page + .page{margin-top:0}
+
+.page-title{
+  margin:0 0 6px;
+  font:400 72px/1 var(--display);
+  color:var(--flame);
+  background:linear-gradient(#FFF6B8 8%,#FFC81F 38%,#FF6A00 68%,#D21F1B 96%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent;
+  filter:drop-shadow(3px 3px 0 #000);
+}
+.page-title:focus{outline:none}
+.page-kicker{
+  margin:0 0 18px;
+  font:bold 13px var(--chrome);
+  color:var(--steel);
+}
+.sub{
+  margin:28px 0 12px;
+  padding:3px 0 3px 10px;
+  border-left:12px solid var(--red);
+  font:bold 17px/1.3 var(--chrome);
+  color:#fff;
+}
+.prose p{max-width:66ch;margin:0 0 1em}
+.prose p:last-child{margin-bottom:0}
+
+hr.rule{
+  height:6px; border:0; margin:26px 0;
+  background:linear-gradient(90deg,var(--red),var(--ember),var(--flame),var(--ember),var(--red));
+}
+
+/* ---------- pictures ---------- */
+.frame{
+  margin:0 0 18px;
+  padding:6px;
+  background:#141414;
+  border:4px ridge var(--steel);
+}
+.frame a{display:block;background:none}
+.frame img{display:block;width:100%;height:auto}
+.frame figcaption{
+  padding:7px 2px 1px;
+  font:italic 15px/1.35 var(--body);
+  color:#CFC7AE;
+}
+.mugshot{float:right;width:230px;margin:4px 0 14px 22px}
+
+.artifact{display:grid;grid-template-columns:minmax(0,330px) minmax(0,1fr);gap:26px;align-items:start}
+.pic-follows{position:sticky;top:16px}
+
+.specs{
+  width:100%;
+  margin:0 0 20px;
+  border:3px ridge var(--steel);
+  border-collapse:separate; border-spacing:2px;
+  font:13px/1.45 var(--chrome);
+}
+.specs th{
+  width:6.5em;
+  padding:5px 8px;
+  text-align:left; vertical-align:top;
+  background:#3a0808; color:var(--flame);
+}
+.specs td{padding:5px 8px;background:#141414}
+
+.statement{
+  margin:0 0 20px;
+  padding:12px 16px;
+  border-left:6px solid var(--blue);
+  background:#0d1022;
+  font-style:italic;
+}
+.statement p{margin:0;max-width:62ch}
+.statement cite{display:block;margin-top:8px;font:normal 12px var(--chrome);color:var(--steel)}
+
+.pager{
+  margin:30px 0 0;
+  padding-top:14px;
+  border-top:2px groove var(--steel);
+  display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+  font:bold 13px var(--chrome);
+}
+
+/* ---------- home ---------- */
+.thumbs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:0}
+.thumbs .frame{margin:0}
+.thumbs img{aspect-ratio:3/4;object-fit:cover}
+.thumbs figcaption{font:bold 12px/1.35 var(--chrome);font-style:normal;color:var(--flame)}
+.thumbs figcaption small{display:block;font-weight:normal;color:var(--bone)}
+
+.win{max-width:640px;border:3px outset var(--steel);background:#1c1c1c}
+.win-bar{
+  padding:4px 8px;
+  font:bold 12px var(--chrome);
+  color:#fff;
+  background:linear-gradient(90deg,#6d0a0a,var(--red));
+}
+.win-body{
+  aspect-ratio:16/9;
+  display:grid; place-items:center;
+  margin:4px;
+  background:#000;
+  border:2px inset var(--steel);
+  text-align:center;
+}
+.win-body iframe,.win-body video{width:100%;height:100%;border:0;display:block}
+
+/* ---------- other works ---------- */
+.works{width:100%;margin-top:14px;border:3px ridge var(--steel);border-collapse:separate;border-spacing:2px}
+.works th{
+  padding:6px 10px;
+  text-align:left;
+  font:bold 12px var(--chrome);
+  background:#3a0808; color:var(--flame);
+}
+.works td{padding:10px;background:#141414;vertical-align:top;font-size:17px;line-height:1.45}
+.works .w-title{font-weight:bold;white-space:nowrap}
+.works .w-kind{font:12px/1.4 var(--chrome);color:var(--steel)}
+.works .w-read{white-space:nowrap;font:bold 13px var(--chrome)}
+
+.slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.slot{
+  aspect-ratio:1/1;
+  display:grid; place-items:center;
+  padding:10px;
+  text-align:center;
+  font:bold 12px/1.4 var(--chrome);
+  color:var(--flame);
+  background:#000;
+  border:10px solid;
+  border-image:repeating-linear-gradient(-45deg,#FFC81F 0 12px,#000 12px 24px) 10;
+}
+
+/* ---------- about ---------- */
+.dogma{
+  max-width:520px;
+  margin:0 0 6px;
+  padding:16px 18px 14px;
+  background:#000;
+  border:4px double #fff;
+  text-align:center;
+}
+.dogma-name{margin:0;font:400 96px/0.95 var(--display);color:#fff}
+.dogma-when{margin:6px 0 4px;font:bold 15px var(--chrome);color:var(--flame)}
+.dogma-what{margin:0;font:13px var(--chrome);color:var(--bone)}
+.dogma-line{margin:10px 0 0;font:italic 19px var(--body);color:#fff}
+
+.cv{margin:0;padding:0;list-style:none;max-width:66ch}
+.cv li{margin:0 0 12px;padding-left:16px;border-left:3px solid #5a1010}
+.cv b{color:#fff}
+.cv span{display:block;font:12px/1.5 var(--chrome);color:var(--steel)}
+.bigbtn{
+  display:inline-block;
+  margin:6px 0 0;
+  padding:9px 16px;
+  font:bold 14px var(--chrome);
+  color:#000; text-decoration:none;
+  background:var(--flame);
+  border:3px outset #FFE58A;
+}
+.bigbtn:visited{color:#000}
+.bigbtn:hover{background:#fff;color:#000}
+.bigbtn:active{border-style:inset}
+
+/* ---------- placeholders ---------- */
+.todo{
+  display:inline-block;
+  padding:1px 7px;
+  font:bold 12px/1.5 var(--chrome);
+  font-style:normal;
+  color:#000;
+  background:var(--flame);
+  border:2px dashed #000;
+  outline:2px solid var(--flame);
+  margin:2px 3px;
+}
+.todo-block{
+  max-width:66ch;
+  margin:0 0 1em;
+  padding:10px 14px;
+  font:bold 13px/1.5 var(--chrome);
+  color:var(--flame);
+  background:#000;
+  border:10px solid;
+  border-image:repeating-linear-gradient(-45deg,#FFC81F 0 12px,#000 12px 24px) 10;
+}
+
+/* ---------- footer ---------- */
+.foot{
+  position:relative;
+  border-top:4px ridge var(--red);
+  text-align:center;
+  overflow:hidden;
+}
+.foot-inner{position:relative;z-index:1;padding:16px 12px 96px}
+.badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:0 0 12px;padding:0;list-style:none}
+.badge{
+  width:88px;height:31px;
+  display:grid;place-items:center;
+  font:bold 8px/1.15 var(--chrome);
+  text-transform:uppercase;
+  border:2px outset var(--steel);
+}
+.badge-a{background:#000;color:var(--flame)}
+.badge-b{background:var(--red);color:#fff}
+.badge-c{background:var(--blue);color:#fff}
+.foot-note{margin:0;font:11px/1.6 var(--chrome);color:var(--steel)}
+.foot .fire{top:auto;bottom:0;height:90px}
+
+/* ---------- small screens ---------- */
+@media (max-width:760px){
+  .shell{margin:0;border-width:0 0 4px}
+  .banner{height:168px}
+  .site-name{font-size:72px}
+  .cols{grid-template-columns:1fr}
+  .side{border-right:0;border-bottom:4px ridge var(--red)}
+  .navlist{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+  .navbtn{margin:0}
+  .gizmo{display:none}
+  .main{padding:18px 16px 26px}
+  .page-title{font-size:48px}
+  .artifact{grid-template-columns:1fr}
+  .artifact .frame{max-width:420px}
+  .pic-follows{position:static}
+  .mugshot{float:none;width:200px;margin:0 0 16px}
+  .thumbs,.slots{grid-template-columns:1fr 1fr}
+  .works,.works tbody,.works tr,.works td{display:block}
+  .works thead{display:none}
+  .works tr{margin-bottom:6px}
+  .works td{padding:6px 10px}
+  .works .w-title{white-space:normal}
+  .dogma-name{font-size:72px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .ticker{white-space:normal}
+  .ticker-track{display:block;animation:none;padding:7px 8px;text-align:center;line-height:1.5}
+  .ticker-track span{display:inline-block;padding:0 .9em}
+  .ticker-track span[aria-hidden]{display:none}
+}
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+
+  <!-- ===================== BANNER ===================== -->
+  <header class="banner">
+    <canvas class="fire" data-fire aria-hidden="true"></canvas>
+    <div class="banner-text">
+      <h1 class="site-name">Nate Langley</h1>
+      <p class="tagline">ePortfolio: sculpture, painting and writing</p>
+    </div>
+  </header>
+
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>Welcome to my ePortfolio</span>
+      <span>What does control look like?</span>
+      <span><b>DOGMA</b> airs Sundays at 11pm on WMUC 90.5 FM</span>
+      <span>The last hour of Sunday is for DOGMA</span>
+      <span aria-hidden="true">Welcome to my ePortfolio</span>
+      <span aria-hidden="true">What does control look like?</span>
+      <span aria-hidden="true"><b>DOGMA</b> airs Sundays at 11pm on WMUC 90.5 FM</span>
+      <span aria-hidden="true">The last hour of Sunday is for DOGMA</span>
+    </div>
+  </div>
+
+  <div class="cols">
+
+    <!-- ===================== MENU ===================== -->
+    <nav class="side" aria-label="Site menu">
+      <p class="side-label">Menu</p>
+      <ul class="navlist">
+        <li><a class="navbtn" href="#home">Welcome</a></li>
+        <li><a class="navbtn" href="#poo-mans-love"><small>Artifact 1</small>Poo Man&rsquo;s Love</a></li>
+        <li><a class="navbtn" href="#monolith"><small>Artifact 2</small>Untitled (The Monolith)</a></li>
+        <li><a class="navbtn" href="#pet"><small>Artifact 3</small>Pet</a></li>
+        <li><a class="navbtn" href="#other-works">Other works</a></li>
+        <li><a class="navbtn" href="#about">About and resume</a></li>
+      </ul>
+
+      <div class="gizmo">
+        You are visitor number<br>
+        <span class="counter" id="counter">000000</span>
+      </div>
+      <button class="flamebtn" id="flamebtn" type="button" aria-pressed="true">Flames: on</button>
+    </nav>
+
+    <main class="main" id="main">
+
+      <!-- ===================== WELCOME ===================== -->
+      <section class="page is-open" id="home" data-title="Welcome">
+        <h2 class="page-title" tabindex="-1">Welcome</h2>
+        <p class="page-kicker">Start here.</p>
+
+        <figure class="frame mugshot">
+          <a href="images/nate.jpg" target="_blank" rel="noopener"><img src="images/nate.jpg" width="991" height="991" alt="Nate sitting at a restaurant table in a black shirt and paisley tie, holding a knife and fork upright over an empty plate. A photo of a plate of pakoras is pasted into the corner."></a>
+          <figcaption>Me, ready for dinner.</figcaption>
+        </figure>
+
+        <div class="prose">
+          <p>I&rsquo;m Nate Langley, a studio art major at the University of Maryland, College Park, and a future art teacher. I&rsquo;m in UMD&rsquo;s Integrated Master&rsquo;s Certification Program, so I&rsquo;ll finish my B.A. in Studio Art in 2027 and my Master of Education in 2028. Outside the studio I&rsquo;m the graphics director at WMUC 90.5 FM, where I also host a weekly radio show, and I work with kids as an art teacher and childcare aide.</p>
+
+          <p>I made this portfolio to show what I make and how I think, for anyone deciding whether to hire me, show my work or hand me a classroom.</p>
+
+          <p>Inside are three artifacts: two sculptures and a painting. All three ask the same question from a different direction: what does control look like? One looks at the pop culture we consume, one at who gets to frame a story, and one at the people we put in power. Each has its own page with photos and a statement on what the piece is, why I made it and what it shows about how I work. Use the menu to get around. The artifacts are listed in order, <a href="#other-works">Other works</a> holds my writing, and <a href="#about">About and resume</a> has my resume, my radio show and my contact info. Click any photo to see it full size.</p>
+        </div>
+
+        <h3 class="sub">Video introduction</h3>
+        <!--
+          VIDEO: replace the <p class="todo-block">…</p> inside .win-body with your embed.
+          YouTube example:
+            <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" title="Video introduction from Nate Langley" allowfullscreen></iframe>
+          Or a file you upload to this repo:
+            <video src="docs/intro.mp4" controls></video>
+        -->
+        <div class="win">
+          <div class="win-bar">nate_intro.mov</div>
+          <div class="win-body">
+            <p class="todo-block" style="margin:0">Under construction: my 1 to 3 minute video introduction goes here.</p>
+          </div>
+        </div>
+
+        <h3 class="sub">The three artifacts</h3>
+        <div class="thumbs">
+          <figure class="frame">
+            <a href="#poo-mans-love"><img src="images/poo-mans-love.jpg" width="1125" height="1500" loading="lazy" alt="Poo Man&rsquo;s Love: a brown coiled serpent sculpture with a troll doll&rsquo;s face and an orange halo."></a>
+            <figcaption><small>Artifact 1</small>Poo Man&rsquo;s Love</figcaption>
+          </figure>
+          <figure class="frame">
+            <a href="#monolith"><img src="images/monolith-snow.jpg" width="956" height="1500" loading="lazy" alt="Untitled (The Monolith): a tall steel column rusting in the snow."></a>
+            <figcaption><small>Artifact 2</small>Untitled (The Monolith)</figcaption>
+          </figure>
+          <figure class="frame">
+            <a href="#pet"><img src="images/pet.jpg" width="962" height="1500" loading="lazy" alt="Pet: a painting of a large figure resting a hand on a smaller figure&rsquo;s head."></a>
+            <figcaption><small>Artifact 3</small>Pet</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ===================== ARTIFACT 1 ===================== -->
+      <section class="page" id="poo-mans-love" data-title="Poo Man&rsquo;s Love">
+        <h2 class="page-title" tabindex="-1">Poo Man&rsquo;s Love</h2>
+        <p class="page-kicker">Artifact 1 of 3. Mixed-media sculpture.</p>
+
+        <div class="artifact">
+          <div class="pic-follows">
+            <figure class="frame">
+              <a href="images/poo-mans-love.jpg" target="_blank" rel="noopener"><img src="images/poo-mans-love.jpg" width="1125" height="1500" loading="lazy" alt="A brown coiled serpent sculpture rising from a white tabletop. It has the smiling face and outstretched arms of a troll doll, an orange VHS reel behind its head like a halo, and a strip of black videotape hanging down to the table."></a>
+            </figure>
+          </div>
+
+          <div>
+            <table class="specs">
+              <tr><th scope="row">Medium</th><td>Wood, deconstructed troll doll, VHS reel and tape (from <i>Ice Age</i>), acrylic paint</td></tr>
+              <tr><th scope="row">Size</th><td>About 14 in tall, 11 in wide</td></tr>
+              <tr><th scope="row">Made</th><td>2026</td></tr>
+            </table>
+
+            <h3 class="sub" style="margin-top:0">Contextual statement</h3>
+            <div class="prose">
+              <p><i>Poo Man&rsquo;s Love</i> is a mixed-media sculpture about 14 inches tall and 11 inches wide. The coiled body is wood, shaped and painted with acrylic. The face and arms come from a troll doll I took apart, and the halo is a reel from a VHS copy of <i>Ice Age</i>, with a strip of the tape still hanging off it. I made it in October 2026 for ARTT333 Elements of Sculpture: Wood and Mixed Media with Foon Sham.</p>
+
+              <p>I kinda just jumped straight into this one without much thought. I figured it would be funny to make, so I made it. In the end, I think of it as sort of a false angel: a serpent with a toy&rsquo;s grin, arms open for a hug, wearing a halo made from a kids&rsquo; movie. It also works like an idol, something to set on a table and look up to, and it got me thinking about how much we let culture shape us and how quickly that culture turns over. A troll doll and a VHS tape were both everywhere once. Now they&rsquo;re thrift-store leftovers, and something else has taken their place. If the things we consume get that much say in who we are, is there a real difference between them and a false idol? The more I think about that question the more it interests me, and this sculpture is me asking it with a straight face.</p>
+
+              <p>What this piece shows about how I work is that I use humor on purpose. A joke gets people close enough to an object that the harder question can reach them, and I&rsquo;d rather someone laugh first and think second than walk past. It also shows how I handle materials. I can shape wood into a form that reads clearly from across a room, take found objects apart and give them a new job, and use paint to make mismatched parts read as one figure. Choosing an <i>Ice Age</i> tape over a blank one is the kind of small decision I care about, because the specifics are where the meaning and the joke both live.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="pager"><a href="#home">&lt;&lt; Back to Welcome</a><a href="#monolith">Next: Untitled (The Monolith) &gt;&gt;</a></p>
+      </section>
+
+      <!-- ===================== ARTIFACT 2 ===================== -->
+      <section class="page" id="monolith" data-title="Untitled (The Monolith)">
+        <h2 class="page-title" tabindex="-1">Untitled (The Monolith)</h2>
+        <p class="page-kicker">Artifact 2 of 3. Welded steel sculpture.</p>
+
+        <div class="artifact">
+          <div>
+            <figure class="frame">
+              <a href="images/monolith-new.jpg" target="_blank" rel="noopener"><img src="images/monolith-new.jpg" width="1125" height="1500" loading="lazy" alt="Nate standing beside a tall, narrow steel sculpture that is exactly his height. It has a hole near the top at eye level and two arched cutouts at the base. A hand makes a peace sign above it."></a>
+              <figcaption>Freshly welded, with me for scale.</figcaption>
+            </figure>
+            <figure class="frame">
+              <a href="images/monolith-snow.jpg" target="_blank" rel="noopener"><img src="images/monolith-snow.jpg" width="956" height="1500" loading="lazy" alt="The same steel sculpture standing outdoors in the snow. Its lower half has turned bright orange with rust while the top is still dark steel."></a>
+              <figcaption>Months later after being left outdoors.</figcaption>
+            </figure>
+          </div>
+
+          <div>
+            <table class="specs">
+              <tr><th scope="row">Medium</th><td>Welded steel</td></tr>
+              <tr><th scope="row">Size</th><td>6 ft tall, exactly my height</td></tr>
+              <tr><th scope="row">Made</th><td>2025</td></tr>
+              <tr><th scope="row">Now</th><td>Rusting in the woods at an undisclosed location</td></tr>
+            </table>
+
+            <h3 class="sub" style="margin-top:0">Contextual statement</h3>
+            <div class="prose">
+              <p><i>Untitled (The Monolith)</i> is a welded steel sculpture that stands six feet tall, which is exactly my height. Holes cut near the top line up at eye level, and two arched slots at the base leave room for your feet. I made it in 2025 for ARTT331 Elements of Sculpture: Steel with Jeremy Kunkel. After it was shown, I left it in the woods in a place I&rsquo;m not disclosing, where it will rust and decay on its own schedule.</p>
+
+              <p>I also coated it in my own rusting agent concoction to kickstart the process. In the first photo at the top of the page, you can see the beginning of the rust after I initially sprayed it. As the months passed, the spots that rusted the most and turned orange fastest were the spots I had sprayed. I&rsquo;m very pleased with how it turned out.</p>
+
+              <p>The piece is about controlled narratives. The slots at the bottom invite you to step right up to it, and once you&rsquo;re there the holes work as a viewfinder: you see what it&rsquo;s pointed at and nothing else. I choose which way it faces, so I choose what you see. The part that interests me most is where that control runs out. This thing will likely outlive me. I&rsquo;ve abandoned it, and whoever finds it won&rsquo;t get a wall label or an artist statement. To them it has no title at all. I call it The Monolith after the one in <i>2001: A Space Odyssey</i>, which I kept thinking about while I built it: an object that changes whoever finds it and explains nothing. So do I decide what it means, or do the people who use it? What will you call it?</p>
+
+              <p>As evidence of what I can do, this piece shows I can plan and fabricate at full human scale: measuring a design to a body, cutting and welding steel, and making an object that stands on its own outdoors. It shows I design for time, since the rust is part of the work and not damage to it. It also shows how I think about an audience. The height, the eye-level holes, the foot slots and even the title are each a decision about what a viewer will physically do, and that habit of designing for someone else&rsquo;s experience is one I&rsquo;ll carry into teaching.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="pager"><a href="#poo-mans-love">&lt;&lt; Back: Poo Man&rsquo;s Love</a><a href="#pet">Next: Pet &gt;&gt;</a></p>
+      </section>
+
+      <!-- ===================== ARTIFACT 3 ===================== -->
+      <section class="page" id="pet" data-title="Pet">
+        <h2 class="page-title" tabindex="-1">Pet</h2>
+        <p class="page-kicker">Artifact 3 of 3. Painting.</p>
+
+        <div class="artifact">
+          <div class="pic-follows">
+            <figure class="frame">
+              <a href="images/pet.jpg" target="_blank" rel="noopener"><img src="images/pet.jpg" width="962" height="1500" loading="lazy" alt="A painting in red, blue and black. A large figure in a hoodie with red sleeves and three blue stars on the chest looks down and rests a hand on the head of a smaller figure, whose eyes are closed. Dark blue stripes fill the background."></a>
+            </figure>
+          </div>
+
+          <div>
+            <table class="specs">
+              <tr><th scope="row">Medium</th><td>Acrylic and colored pencil on cardboard (the bottom of an Arizona tea box)</td></tr>
+              <tr><th scope="row">Size</th><td>Approx. 8 in &times; 5 in</td></tr>
+              <tr><th scope="row">Made</th><td>2025</td></tr>
+            </table>
+
+            <h3 class="sub" style="margin-top:0">Exhibition statement</h3>
+            <blockquote class="statement">
+              <p>The central figure of the piece stands as a symbol of paternalistic influence and forceful suppression. His hand sensually yet firmly envelops the head of the other man beneath him. The three blue stars, often a symbol of national pride, here feel heavy and intrusive, suggesting that the &lsquo;patriotism&rsquo; this figure is performing is inextricably linked to the control and exploitation of the vulnerable. What are the true intentions of the people we elect into power? What does their authority hide?</p>
+              <cite>The statement I wrote for the 2026 Sadat Arts for Justice &amp; Peace Competition.</cite>
+            </blockquote>
+
+            <h3 class="sub">Contextual statement</h3>
+            <div class="prose">
+              <p><i>Pet</i> is a small painting in acrylic and colored pencil on cardboard. The cardboard is the bottom of an Arizona tea box. I showed it at the Herman Maril Gallery from March 9 to April 3, 2026, with the exhibition statement above. This one was not made for a class. It served as a much needed release for me at the time.</p>
+
+              <p>Almost everything in the painting is red, blue or black. The stripes in the background and the three stars on the hoodie put a flag into the scene without my having to paint one. The larger figure is too big for the frame and gets cropped by its edges, while the smaller one fits completely under his hand. That hand is where the title comes from: it&rsquo;s how you&rsquo;d pat a pet. It reads as affection and as ownership in the same gesture, and I wanted both readings to stay open because that is how paternalistic power usually presents itself.</p>
+
+              <p>This piece shows that I can carry a political idea through composition, color and gesture instead of spelling it out. It shows I can work small and cheap. I painted the flat areas in acrylic and drew the faces and hair in colored pencil, so the people are the most fragile, hand-drawn things in the picture, and the surface is something most people throw away. It also shows I can write about my own work for a public audience, which the exhibition statement required.</p>
+            </div>
+          </div>
+        </div>
+
+        <p class="pager"><a href="#monolith">&lt;&lt; Back: Untitled (The Monolith)</a><a href="#other-works">Next: Other works &gt;&gt;</a></p>
+      </section>
+
+      <!-- ===================== OTHER WORKS ===================== -->
+      <section class="page" id="other-works" data-title="Other works">
+        <h2 class="page-title" tabindex="-1">Other works</h2>
+        <p class="page-kicker">Writing, plus room for more art.</p>
+
+        <h3 class="sub" style="margin-top:0">Writing</h3>
+        <div class="prose"><p>I write fiction and essays alongside the studio work. Each of these opens as a PDF in a new tab.</p></div>
+
+        <table class="works">
+          <thead>
+            <tr><th scope="col">Title</th><th scope="col">What it is</th><th scope="col">Read it</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="w-title">ARMOR<div class="w-kind">Short prose, 2 pages</div></td>
+              <td>A boy, his grandfather, a .22 rifle and an armadillo in the garden. A piece about what gets handed down between men, and what the narrator only understands years later about the hands that took the rifle from him.</td>
+              <td class="w-read"><a href="docs/ARMOR.pdf" target="_blank" rel="noopener">Open PDF</a></td>
+            </tr>
+            <tr>
+              <td class="w-title">Five Easy Pieces<div class="w-kind">Flash fiction, 1 page</div></td>
+              <td>An old hand on an Arctic oil rig mends a younger worker&rsquo;s glove, bare-handed, at forty below. A portrait told almost entirely through a pair of hands.</td>
+              <td class="w-read"><a href="docs/Five_Easy_Pieces.pdf" target="_blank" rel="noopener">Open PDF</a></td>
+            </tr>
+            <tr>
+              <td class="w-title">Hell<div class="w-kind">Essay, 2 pages</div></td>
+              <td>A close look at Francisco Goya&rsquo;s <i>The Dog</i>, and at what happens to a viewer when a painting takes away everything you would use to get your bearings.</td>
+              <td class="w-read"><a href="docs/Hell.pdf" target="_blank" rel="noopener">Open PDF</a></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="sub">More art</h3>
+        <!--
+          To add a piece, replace a <div class="slot">…</div> with:
+            <figure class="frame">
+              <a href="images/FILE.jpg" target="_blank" rel="noopener"><img src="images/FILE.jpg" alt="Describe the piece"></a>
+              <figcaption>Title, medium, year</figcaption>
+            </figure>
+        -->
+        <div class="slots">
+          <div class="slot">Under construction: more art coming soon</div>
+          <div class="slot">Under construction: more art coming soon</div>
+          <div class="slot">Under construction: more art coming soon</div>
+        </div>
+
+        <p class="pager"><a href="#pet">&lt;&lt; Back: Pet</a><a href="#about">Next: About and resume &gt;&gt;</a></p>
+      </section>
+
+      <!-- ===================== ABOUT ===================== -->
+      <section class="page" id="about" data-title="About and resume">
+        <h2 class="page-title" tabindex="-1">About and resume</h2>
+        <p class="page-kicker">Who I am, what I&rsquo;ve done and how to reach me.</p>
+
+        <div class="prose">
+          <p>I&rsquo;m an artist and art teacher in training based in College Park, Maryland. I work in sculpture, painting, illustration and graphic design, and I write. I&rsquo;m drawn to things that are loud, strange, or make me uncomfortable because I believe the best art comes from curiosity rather than playing it safe.</p>
+          <p>Off the clock I collect and read comics (<i>Hellboy</i> is my favorite series), paint Warhammer miniatures, and DJ a weekly radio show.</p>
+        </div>
+
+        <h3 class="sub">On the radio</h3>
+        <div class="dogma">
+          <p class="dogma-name">DOGMA</p>
+          <p class="dogma-when">Sundays at 11pm on WMUC 90.5 FM</p>
+          <p class="dogma-what">Hardcore, noise rock, electronic and industrial</p>
+          <p class="dogma-line">The last hour of Sunday is for DOGMA.</p>
+        </div>
+
+        <h3 class="sub">Resume highlights</h3>
+        <ul class="cv">
+          <li><b>University of Maryland, College Park</b><span>B.A. in Studio Art, expected May 2027. M.Ed., expected spring 2028.</span>Selected for the Integrated Master&rsquo;s Certification Program, an accelerated 4+1 path to teacher certification.</li>
+          <li><b>Towson University</b><span>Coursework toward a B.A. in Fine Arts, Aug. 2023 to May 2025.</span>Honors College student.</li>
+          <li><b>Graphics director and radio show host, WMUC 90.5 FM</b><span>Sept. 2025 to present</span>I lead the station&rsquo;s visual branding, design merchandise and promotional graphics, and help plan and publish a DIY magazine each semester.</li>
+          <li><b>Art teacher, Abrakadoodle</b><span>June 2025 to Aug. 2026</span>Taught process-based art lessons to classes of up to 30 students in acrylic, watercolor and sculpture.</li>
+          <li><b>Childcare aide, Anne Arundel County Recreation and Parks</b><span>Oct. 2022 to June 2025</span>Supervised up to 45 elementary-aged students and led crafts, activities and homework help.</li>
+          <li><b>Freelance illustrator and designer</b><span>Aug. 2024 to present</span>Custom logos and digital illustrations for local clients and student organizations.</li>
+        </ul>
+        <p><a class="bigbtn" href="docs/Langley_Nathanael_Resume.pdf" target="_blank" rel="noopener">Open my full resume (PDF)</a></p>
+
+        <h3 class="sub">Contact</h3>
+        <div class="prose">
+          <p>Email me at <a href="mailto:nate.langley6@gmail.com">nate.langley6@gmail.com</a>.</p>
+        </div>
+
+        <p class="pager"><a href="#other-works">&lt;&lt; Back: Other works</a><a href="#home">Back to Welcome &gt;&gt;</a></p>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="foot">
+    <div class="foot-inner">
+      <ul class="badges" aria-label="Site badges">
+        <li class="badge badge-a">Best viewed<br>at 800 &times; 600</li>
+        <li class="badge badge-b">Now with<br>real flames</li>
+        <li class="badge badge-c">Tune in:<br>WMUC 90.5 FM</li>
+      </ul>
+      <p class="foot-note">&copy; 2026 Nate Langley. All artwork and writing are my own. Last updated November 2026.</p>
+    </div>
+    <canvas class="fire" data-fire aria-hidden="true"></canvas>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+  document.documentElement.classList.add("js");
+
+  /* ---------- page switching ---------- */
+  var pages = Array.prototype.slice.call(document.querySelectorAll(".page"));
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll(".navbtn"));
+
+  function pageFor(hash) {
+    var id = (hash || "").replace(/^#/, "");
+    var el = id ? document.getElementById(id) : null;
+    return el && el.classList.contains("page") ? el : null;
+  }
+
+  function show(el, moveFocus) {
+    if (!el) { el = document.getElementById("home"); }
+    pages.forEach(function (p) { p.classList.toggle("is-open", p === el); });
+    navLinks.forEach(function (a) {
+      if (a.getAttribute("href") === "#" + el.id) { a.setAttribute("aria-current", "page"); }
+      else { a.removeAttribute("aria-current"); }
+    });
+    document.title = el.getAttribute("data-title") + " | Nate Langley";
+    if (moveFocus) {
+      window.scrollTo(0, 0);
+      var h = el.querySelector(".page-title");
+      if (h) { h.focus({ preventScroll: true }); }
+    }
+  }
+
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) { return; }
+    var el = pageFor(a.getAttribute("href"));
+    if (!el) { return; }
+    e.preventDefault();
+    try { history.pushState(null, "", "#" + el.id); } catch (err) {}
+    show(el, true);
+  });
+  window.addEventListener("popstate", function () { show(pageFor(location.hash), false); });
+  show(pageFor(location.hash), false);
+  if (location.hash) { window.scrollTo(0, 0); }
+
+  /* ---------- visitor counter ----------
+     Real counts come from a free public counting service (no account needed).
+     The count starts at zero and each browser is counted once per session.
+     If the service can't be reached (it's down, or an ad blocker stops it),
+     the visitor sees 001998 instead.
+     To start the count over, change COUNTER_KEY to any new unique name. */
+  var COUNTER_KEY = "nate-langley-eportfolio-visitors-2026";
+  var COUNTER_API = "https://countapi.mileshilliard.com/api/v1/";
+  var FALLBACK_COUNT = 1998;
+  var counter = document.getElementById("counter");
+  function showCount(n) { if (counter) { counter.textContent = ("000000" + n).slice(-6); } }
+
+  var hosted = /^https?:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  if (hosted && window.fetch) {
+    var counted = false;
+    try { counted = sessionStorage.getItem("nl-counted") === "1"; } catch (err) {}
+    var ctl = window.AbortController ? new AbortController() : null;
+    if (ctl) { setTimeout(function () { ctl.abort(); }, 5000); }
+    fetch(COUNTER_API + (counted ? "get/" : "hit/") + COUNTER_KEY, ctl ? { signal: ctl.signal } : {})
+      .then(function (r) { if (!r.ok) { throw new Error("counter unavailable"); } return r.json(); })
+      .then(function (d) {
+        var n = parseInt(d.value, 10);
+        if (!isFinite(n)) { throw new Error("counter unavailable"); }
+        showCount(n);
+        try { sessionStorage.setItem("nl-counted", "1"); } catch (err) {}
+      })
+      .catch(function () { showCount(FALLBACK_COUNT); });
+  } else {
+    showCount(FALLBACK_COUNT);
+  }
+
+  /* ---------- flames ---------- */
+  var CELL = 4;      // size of one fire pixel on screen
+  var MAX = 36;      // hottest value
+  var palette = (function () {
+    var stops = [[0, 0, 0, 0], [5, 70, 6, 4], [13, 210, 31, 27], [22, 255, 106, 0], [30, 255, 200, 31], [36, 255, 250, 215]];
+    var out = [];
+    for (var i = 0; i <= MAX; i++) {
+      for (var s = 0; s < stops.length - 1; s++) {
+        var a = stops[s], b = stops[s + 1];
+        if (i >= a[0] && i <= b[0]) {
+          var t = (i - a[0]) / (b[0] - a[0]);
+          out[i] = [
+            Math.round(a[1] + (b[1] - a[1]) * t),
+            Math.round(a[2] + (b[2] - a[2]) * t),
+            Math.round(a[3] + (b[3] - a[3]) * t)
+          ];
+          break;
+        }
+      }
+    }
+    return out;
+  })();
+
+  function Fire(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas.getContext("2d");
+    this.visible = true;
+    this.w = 0; this.h = 0;
+    this.resize();
+  }
+  Fire.prototype.resize = function () {
+    var r = this.canvas.getBoundingClientRect();
+    var w = Math.max(40, Math.ceil(r.width / CELL));
+    var h = Math.max(12, Math.ceil(r.height / CELL));
+    if (w === this.w && h === this.h) { return; }
+    this.w = w; this.h = h;
+    this.canvas.width = w; this.canvas.height = h;
+    this.px = new Uint8Array(w * h);
+    for (var x = 0; x < w; x++) { this.px[(h - 1) * w + x] = MAX; }
+    this.img = this.ctx.createImageData(w, h);
+    // cool faster on short canvases so the flames reach about 85% of the height
+    var cool = MAX / (h * 0.85);
+    this.coolBase = Math.floor(cool);
+    this.coolFrac = cool - this.coolBase;
+    for (var i = 0; i < h * 2; i++) { this.step(); }
+    this.draw();
+  };
+  Fire.prototype.step = function () {
+    var w = this.w, h = this.h, p = this.px;
+    for (var y = 1; y < h; y++) {
+      var row = y * w;
+      for (var x = 0; x < w; x++) {
+        var v = p[row + x];
+        var drift = ((Math.random() * 3) | 0) - 1;
+        var dst = row - w + x + drift;
+        if (dst < 0) { continue; }
+        var cool = this.coolBase + (Math.random() < this.coolFrac ? 1 : 0) + (Math.random() < 0.25 ? 1 : 0);
+        p[dst] = v > cool ? v - cool : 0;
+      }
+    }
+  };
+  Fire.prototype.draw = function () {
+    var d = this.img.data, p = this.px;
+    for (var i = 0, n = p.length; i < n; i++) {
+      var c = palette[p[i]], j = i * 4;
+      d[j] = c[0]; d[j + 1] = c[1]; d[j + 2] = c[2];
+      d[j + 3] = p[i] === 0 ? 0 : 255;
+    }
+    this.ctx.putImageData(this.img, 0, 0);
+  };
+
+  var fires = Array.prototype.map.call(document.querySelectorAll("[data-fire]"), function (c) { return new Fire(c); });
+  var btn = document.getElementById("flamebtn");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var burning = !reduce;
+  try {
+    var saved = localStorage.getItem("nl-flames");
+    if (saved === "on") { burning = true; }
+    if (saved === "off") { burning = false; }
+  } catch (err) {}
+
+  function paintButton() {
+    btn.setAttribute("aria-pressed", burning ? "true" : "false");
+    btn.textContent = burning ? "Flames: on" : "Flames: paused";
+    document.documentElement.classList.toggle("flames-paused", !burning);
+  }
+  paintButton();
+  btn.addEventListener("click", function () {
+    burning = !burning;
+    try { localStorage.setItem("nl-flames", burning ? "on" : "off"); } catch (err) {}
+    paintButton();
+  });
+
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        fires.forEach(function (f) { if (f.canvas === en.target) { f.visible = en.isIntersecting; } });
+      });
+    });
+    fires.forEach(function (f) { io.observe(f.canvas); });
+  }
+
+  var resizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () { fires.forEach(function (f) { f.resize(); }); }, 150);
+  });
+
+  var last = 0;
+  function frame(t) {
+    if (burning && !document.hidden && t - last > 45) {
+      last = t;
+      fires.forEach(function (f) { if (f.visible) { f.step(); f.draw(); } });
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
